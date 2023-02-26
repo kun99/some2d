@@ -27,12 +27,12 @@ public class GameSession : MonoBehaviour
         }
     }
 
-    int getScore()
+    public int getScore()
     {
         return score;
     }
 
-    void Start()
+    public void Start()
     {
         livesText.text = playerLives.ToString(); // Make the UI show the initial value
         scoreText.text = score.ToString();       // Make the UI show the initial value
@@ -45,6 +45,12 @@ public class GameSession : MonoBehaviour
                                             // we must do that manually
     }
 
+    public void Reset()
+    {
+        playerLives = 3;
+        score = 0;
+    }
+
     public void ProcessPlayerDeath() // This is public. When John dies, he will call this.
     {
         if(playerLives > 1) 
@@ -55,12 +61,12 @@ public class GameSession : MonoBehaviour
             livesText.text = playerLives.ToString(); // if we change the value and we want UI to update
                                                      // we must do that manually
         }
-        else // Game over.. need to start from the beginning
+        else
         {
             // Reset the ScenePersist
             FindObjectOfType<ScenePersist>().ResetScenePersist();
             
-            SceneManager.LoadScene(0); // assume that scene 0 is the first one or the menu
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Destroy(gameObject); // Destroy the game session.
 
 

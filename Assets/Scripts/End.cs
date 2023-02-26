@@ -8,6 +8,7 @@ public class End : MonoBehaviour
 {
     public void Return()
     {
+        FindObjectOfType<GameSession>().Reset();
         SceneManager.LoadScene(0);
     }
 

@@ -10,8 +10,12 @@ public class LevelExit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //FindObjectOfType<GameSession>().getScore() >= 3*currentSceneIndex;
-        StartCoroutine(LoadNextLevel());
+        if(SceneManager.GetActiveScene().buildIndex > 2){
+            StartCoroutine(LoadNextLevel());
+        }
+        else if(FindObjectOfType<GameSession>().getScore() >= 3*SceneManager.GetActiveScene().buildIndex){
+            StartCoroutine(LoadNextLevel());
+        }
     }
 
     IEnumerator LoadNextLevel()
@@ -23,6 +27,10 @@ public class LevelExit : MonoBehaviour
         int nextSceneIndex = currentSceneIndex + 1; 
 
 
+        if(nextSceneIndex==4) {
+            FindObjectOfType<GameSession>().Reset();
+            FindObjectOfType<GameSession>().Start();
+        }
         if(nextSceneIndex == SceneManager.sceneCountInBuildSettings) {
             nextSceneIndex = 0;
         }
