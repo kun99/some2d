@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScenePersist : MonoBehaviour
 {
+
     void Awake()  // We will use SINGLETON pattern
     {
         int numScenePersist = FindObjectsOfType<ScenePersist>().Length; // Notice ..Objects.. 

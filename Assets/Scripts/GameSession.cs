@@ -34,6 +34,14 @@ public class GameSession : MonoBehaviour
 
     public void Start()
     {
+        
+        int index = SceneManager.GetActiveScene().buildIndex;
+        if(index==2){
+            score = 3;
+        }
+        else if(index==3){
+            score = 6;
+        }
         livesText.text = playerLives.ToString(); // Make the UI show the initial value
         scoreText.text = score.ToString();       // Make the UI show the initial value
     }
@@ -42,7 +50,7 @@ public class GameSession : MonoBehaviour
     {
         score += 1;
         scoreText.text = score.ToString();  // if we change the value and we want UI to update
-                                            // we must do that manually
+                                        // we must do that manually
     }
 
     public void Reset()
