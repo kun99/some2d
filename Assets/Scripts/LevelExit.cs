@@ -26,13 +26,12 @@ public class LevelExit : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1; 
 
-
-        if(nextSceneIndex==4) {
-            FindObjectOfType<GameSession>().Reset();
-            FindObjectOfType<GameSession>().Start();
-        }
-        if(nextSceneIndex == SceneManager.sceneCountInBuildSettings) {
+        if(nextSceneIndex == 5) {
             nextSceneIndex = 0;
+            FindObjectOfType<GameSession>().Reset();
+        }
+        else{
+            FindObjectOfType<GameSession>().Start();
         }
         // Before loading next level, have to destroy the ScenePersist object so that
         // the new one of the new level will be there to do the work

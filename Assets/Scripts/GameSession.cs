@@ -34,7 +34,6 @@ public class GameSession : MonoBehaviour
 
     public void Start()
     {
-        
         int index = SceneManager.GetActiveScene().buildIndex;
         if(index==2){
             score = 3;
@@ -42,8 +41,10 @@ public class GameSession : MonoBehaviour
         else if(index==3){
             score = 6;
         }
-        livesText.text = playerLives.ToString(); // Make the UI show the initial value
-        scoreText.text = score.ToString();       // Make the UI show the initial value
+        else{
+            score = 0;
+        }
+        ToText();
     }
 
     public void AddToScore(int points) // This is public. When the coin is hit, it will call this.
@@ -57,6 +58,13 @@ public class GameSession : MonoBehaviour
     {
         playerLives = 3;
         score = 0;
+        ToText();
+    }
+
+    public void ToText()
+    {
+        livesText.text = playerLives.ToString(); // Make the UI show the initial value
+        scoreText.text = score.ToString();       // Make the UI show the initial value
     }
 
     public void ProcessPlayerDeath() // This is public. When John dies, he will call this.
